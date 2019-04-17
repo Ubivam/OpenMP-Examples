@@ -1,0 +1,57 @@
+echo "**************************************"
+echo Parallel program starting! NUM_THREADS=8
+echo "**************************************"
+OMP_NUM_THREADS=8 ./jacobi 5000 500 #&> thread81
+OMP_NUM_THREADS=8 ./jacobi 10000 1000 #&> thread82
+OMP_NUM_THREADS=8 ./jacobi 50000 5000 #&> thread83
+OMP_NUM_THREADS=8 ./jacobi 100000 10000 #&> thread84
+echo "*************************************"
+echo Parallel program ended! NUM_THREADS=8
+echo "*************************************"
+echo
+echo "*************************************"
+echo Parallel program started! NUM_THREADS=4
+echo "*************************************"
+OMP_NUM_THREADS=4 ./jacobi 5000 500 #&> thread41
+OMP_NUM_THREADS=4 ./jacobi 10000 1000 #&>thread42
+OMP_NUM_THREADS=4 ./jacobi 50000 5000 #&>thread43
+OMP_NUM_THREADS=4 ./jacobi 100000 10000 #&>thread44
+echo "*************************************"
+echo Parallel program ebded! NUM_THREADS=4
+echo "*************************************"
+echo
+echo "*************************************"
+echo Parallel program started! NUM_THREADS=2
+echo "*************************************"
+OMP_NUM_THREADS=2 ./jacobi 5000 500 #&>thread21
+OMP_NUM_THREADS=2 ./jacobi 10000 1000 #&>thread22
+OMP_NUM_THREADS=2 ./jacobi 50000 5000 #&>thread23
+OMP_NUM_THREADS=2 ./jacobi 100000 10000 #&>thread24
+echo "*************************************"
+echo Parallel program ended! NUM_THREADS=2
+echo "*************************************"
+echo
+echo "***************************************"
+echo Sequential program started! NUM_THREADS=1
+echo "***************************************"
+OMP_NUM_THREADS=1 ./jacobi 5000 500 #&>thread11
+OMP_NUM_THREADS=1 ./jacobi 10000 1000 #&>thread12
+OMP_NUM_THREADS=1 ./jacobi 50000 5000 #&>thread13
+OMP_NUM_THREADS=1 ./jacobi 100000 10000# &>thread14
+echo
+echo "***************************************"
+echo Sequential program ended! NUM_THREADS=1
+echo "***************************************"
+
+#diff thread81 thread11
+#diff thread82 thread12
+#diff thread83 thread13
+#diff thread84 thread14
+#diff thread41 thread11
+#diff thread42 thread12
+#diff thread43 thread13
+#diff thread44 thread14
+#diff thread21 thread11
+#diff thread22 thread12
+#diff thread23 thread13
+#diff thread24 thread14

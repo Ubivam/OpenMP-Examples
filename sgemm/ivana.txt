@@ -1,0 +1,10 @@
+Parallel Program Started!
+91.413ms.
+4180.86ms.
+Paraller Program Finished!
+
+
+Sequential program Started!
+22.426 ms.
+12476.6 ms.
+Sequential program Finished!

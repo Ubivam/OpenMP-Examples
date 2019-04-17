@@ -1,0 +1,53 @@
+echo "***************************************"
+echo Parallel program started! NUM THREADS=8
+echo "***************************************"
+OMP_NUM_THREADS=8 ./kmeans -i data/100 > p18 
+OMP_NUM_THREADS=8 ./kmeans -i data/kdd_cup > p28
+OMP_NUM_THREADS=8 ./kmeans -i data/204800.txt >p38
+OMP_NUM_THREADS=8 ./kmeans -i data/819200.txt >p48
+echo "***************************************"
+echo Parallel program stoped! NUM THREADS=8
+echo "***************************************"
+echo
+echo
+echo "***************************************"
+echo Parallel program started! NUM THREADS=4
+echo "***************************************"
+OMP_NUM_THREADS=4 ./kmeans -i data/100 > p14
+OMP_NUM_THREADS=4 ./kmeans -i data/kdd_cup > p24
+OMP_NUM_THREADS=4 ./kmeans -i data/204800.txt > p34
+OMP_NUM_THREADS=4 ./kmeans -i data/819200.txt > p44
+echo "***************************************"
+echo Parallel program stoped! NUM THREADS=4
+echo "***************************************"
+echo
+echo
+echo "***************************************"
+echo Parallel program started! NUM THREADS=2
+echo "***************************************"
+OMP_NUM_THREADS=2 ./kmeans -i data/100 > p12
+OMP_NUM_THREADS=2 ./kmeans -i data/kdd_cup > p22
+OMP_NUM_THREADS=2 ./kmeans -i data/204800.txt > p32
+OMP_NUM_THREADS=2 ./kmeans -i data/819200.txt > p42
+echo "***************************************"
+echo Parallel program stoped! NUM THREADS=2
+echo "***************************************"
+./kmeans_seq -i data/100 > s1
+./kmeans_seq -i data/kdd_cup > s2
+./kmeans_seq -i data/204800.txt > s3
+./kmeans_seq -i data/819200.txt > s4
+echo COMPARISON BEETWEN NUM THREADS=2 AND SEQ
+diff p12 s1
+diff p22 s2
+diff p32 s3
+diff p42 s4
+echo COMPARISON BEETWEN NUM THREADS=4 AND SEQ
+diff p14 s1
+diff p24 s2
+diff p34 s3
+diff p44 s4
+echo COMPARISON BEETWEN NUM THREADS=8 AND SEQ
+diff p18 s1
+diff p28 s2
+diff p38 s3
+diff p48 s4

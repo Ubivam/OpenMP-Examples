@@ -1,0 +1,22 @@
+echo Parallel Program Started NumThreads=8!
+OMP_NUM_THREADS=8 ./sgemm data/small/input/matrix1.txt data/small/input/matrix2t.txt result_small.txt
+OMP_NUM_THREADS=8 ./sgemm data/medium/input/matrix1.txt data/medium/input/matrix2t.txt result_medium.txt
+echo Paraller Program Finished NumThreads=8!
+echo
+echo
+echo Parallel Program Started NumThreads =4!
+OMP_NUM_THREADS=4 ./sgemm data/small/input/matrix1.txt data/small/input/matrix2t.txt result_small.txt
+OMP_NUM_THREADS=4 ./sgemm data/medium/input/matrix1.txt data/medium/input/matrix2t.txt result_medium.txt
+echo Paraller Program Finished NumThreads=4!
+echo
+echo
+echo Parallel Program Started NumThreads=2!
+OMP_NUM_THREADS=2 ./sgemm data/small/input/matrix1.txt data/small/input/matrix2t.txt result_small.txt
+OMP_NUM_THREADS=2 ./sgemm data/medium/input/matrix1.txt data/medium/input/matrix2t.txt result_medium.txt
+echo Paraller Program Finished NumThreads=2!
+echo ""
+echo ""
+echo Sequential program Started!
+./sgemm_seq data/small/input/matrix1.txt data/small/input/matrix2t.txt result_small_seq.txt
+./sgemm_seq data/medium/input/matrix1.txt data/medium/input/matrix2t.txt result_medium_seq.txt
+echo Sequential program Finished!
