@@ -69,7 +69,7 @@ float** kmeans_clustering(float **feature,    /* in: [npoints][nfeatures] */
     /*MY ALOCATION*/
     int **local_new_centers_len; //[nthreads][ncluster]
     float ***local_new_centers; // [nthreads][nclusters][nfeatures]
-    nthreads= 8; //max number of threads
+    nthreads= omp_get_max_threads(); //max number of threads
 
     /* allocate space for returning variable clusters[] */
     clusters    = (float**) malloc(nclusters *             sizeof(float*));
@@ -165,7 +165,14 @@ float** kmeans_clustering(float **feature,    /* in: [npoints][nfeatures] */
         //delta /= npoints;
     } while (delta > threshold);
   
-  
+    free(local_new_centers_len[0]);
+    free(local_new_centers_len);
+
+    for (i=0; i<nthreads; i++)
+       for (j=0; j<nclusters; j++)
+                free(local_new_centers[i][j]);
+       free(local_new_centers[0]);
+       free(local_new_centers);
     free(new_centers[0]);
     free(new_centers);
     free(new_centers_len);
